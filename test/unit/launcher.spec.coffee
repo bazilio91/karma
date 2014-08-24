@@ -66,7 +66,7 @@ describe 'launcher', ->
     describe 'launch', ->
 
       it 'should inject and start all browsers', ->
-        l.launch ['Fake'], 'localhost', 1234, '/root/'
+        l.launch ['Fake'], 'localhost', 1234, null, '/root/'
 
         browser = FakeBrowser._instances.pop()
         expect(browser.start).to.have.been.calledWith 'http://localhost:1234/root/'
@@ -75,7 +75,7 @@ describe 'launcher', ->
 
 
       it 'should allow launching a script', ->
-        l.launch ['/usr/local/bin/special-browser'], 'localhost', 1234, '/'
+        l.launch ['/usr/local/bin/special-browser'], 'localhost', 1234, null, '/'
 
         script = ScriptBrowser._instances.pop()
         expect(script.start).to.have.been.calledWith 'http://localhost:1234/'
@@ -83,11 +83,16 @@ describe 'launcher', ->
 
 
       it 'should use the non default host', ->
-        l.launch ['Fake'], 'whatever', 1234, '/root/'
+        l.launch ['Fake'], 'whatever', 1234, null, '/root/'
 
         browser = FakeBrowser._instances.pop()
         expect(browser.start).to.have.been.calledWith 'http://whatever:1234/root/'
 
+      it 'should use capturePort if specified', ->
+        l.launch ['Fake'], 'localhost', 1234, 4321, '/root/'
+
+        browser = FakeBrowser._instances.pop()
+        expect(browser.start).to.have.been.calledWith 'http://localhost:4321/root/'
 
     describe 'restart', ->
       it 'should restart the browser', ->
