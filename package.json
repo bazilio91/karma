@@ -192,5 +192,8 @@
     "node": "~0.8 || ~0.10"
   },
   "version": "0.12.23",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "grunt build"
+  }
 }
