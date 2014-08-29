@@ -142,9 +142,7 @@
     "useragent": "~2.0.9",
     "graceful-fs": "~3.0.2",
     "connect": "~2.25.8",
-    "source-map": "~0.1.31"
-  },
-  "devDependencies": {
+    "source-map": "~0.1.31",
     "grunt": "~0.4",
     "grunt-simple-mocha": "*",
     "grunt-contrib-jshint": "~0.10.0",
